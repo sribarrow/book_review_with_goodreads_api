@@ -1,0 +1,37 @@
+{% extends "layout.html" %}
+
+{% block body %}
+    <h1>Welcome to Books Review</h1>
+
+    <legend class="border-bottom mb-4">Search by title, isbn or author</legend>
+    
+    <!-- Search form -->
+    <form action="" method="POST" >
+         <!-- CSRF token - Secret key -->
+         {{ form.hidden_tag() }} 
+          <div class="form-group">
+            <div class="input-group md-form form-sm form-1 pl-0">
+                <div class="form-inline pl-2 ">{{form.select(class="form-control form-control-lg")}}</div>
+               
+               <div class="input-group-prepend">
+                     {{ form.search(class="form-control form-control-lg my-0 ml-4 py-1")}}  
+                     <button class="input-group-text" id="basic-text1"><i class="fa fa-search text-white"
+                       aria-hidden="true"></i></button> 
+               </div>
+             </div>
+          </div>        
+    </form>
+    <hr>
+
+    {%for result in results%}
+    <article class="media content-section"> 
+        <div class="media-body">
+            <div class="article-metadata">
+            <a class="mr-2" href="#">{{ result.title}} by {{result.author}} 
+                (<small class="text-muted">{{ result.year }}</small>)</a>
+            </div>
+        </div>
+        </article>
+    {%endfor%}
+  
+{% endblock body %}

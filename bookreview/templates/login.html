@@ -1,0 +1,51 @@
+{% extends "layout.html" %}
+{% block body %}
+<div class="content-section">
+    <form action="" method="POST">
+        {{ form.hidden_tag() }} 
+        <Fieldset class="form-group">
+            <legend class="border-bottom mb-4">Sign In</legend>
+            <div class="form-group">
+                {{ form.email.label(class="form-control form-control-lg")}}
+                {% if form.email.errors %}
+                    {{ form.email(class="form-control form-control-lg is-invalid")}}   
+                    <div class="invalid-feedback">
+                        {% for error in form.email.errors %}
+                            <span> {{ error }} </span>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    {{ form.email(class="form-control form-control-lg")}}   
+                {% endif %}
+            </div>
+            <div class="form-group">
+                {{ form.password.label(class="form-control form-control-lg")}}
+                {% if form.password.errors %}
+                    {{ form.password(class="form-control form-control-lg is-invalid")}}     
+                    <div class="invalid-feedback">
+                        {% for error in form.password.errors %}
+                            <span> {{ error }} </span>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    {{ form.password(class="form-control form-control-lg")}}   
+                {% endif %}
+            </div>
+            <div class="form-group form-check text-muted">
+                {{ form.remember(class="form-check-input") }}
+                {{ form.remember.label(class="form-check-label") }}
+                <a href="{{ url_for ('change_password') }}">Forgot Password?</a>
+            </div>
+        </Fieldset>
+        <div class="form-group">
+            {{ form.submit(class="btn btn-outline-info")}}
+        </div>
+      </form>
+
+</div>
+<div class="form-group border-top pt-3">
+    <small class="text-muted">
+        New User? <a class="small-print" href="{{ url_for ('register') }}">Sign Up</a>
+    </small>
+</div>
+{% endblock body %}
