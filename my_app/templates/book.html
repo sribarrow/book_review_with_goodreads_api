@@ -1,0 +1,65 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Book
+{% endblock %}
+
+{% block body %}
+
+<div class="content-section">
+    <h2>Book Details</h2>
+    <ul class="nodeco">
+        <li>Title: {{ book.title }}</li>
+        <li>Author: {{ book.author }}</li>
+        <li>Published in : {{ book.year}} </li>
+        <li>ISBN : {{ book.isbn}} </li>
+    </ul>
+   
+    <h6>Goodread Ratings</h6>
+    <div class="card">
+      <div class="card-body">
+        {% for r in gr_reviews%}
+        <span class="text-muted mr-4">{{r.title()}}:{{gr_reviews[r]}}</span>
+        {% endfor %}</div>
+      </div>
+
+    <div class="media-body mt-4">
+    <h2>Reviews</h2>
+        {%if reviews %}
+            {%for review in reviews%}
+                <article class="media content-section">
+                    <div class="media-body">
+                        <div class="alert alert-warning" role="alert">
+                        <ul class="nodeco">
+                            <li>Review: {{ review.comments }}</li>
+                            <li>Rating: {{ review.rating }}</li>
+                            <li><strong>Posted by:</strong> {{ review.username }} <strong>on</strong> {{review.date_posted}}</li>
+                        </ul>
+                        </div>
+                    </div>
+                </article>
+            {%endfor%}
+        {% else %}
+        <p>No reviews.</p>
+        {% endif %}
+    </div>
+    <div class="mt-4">
+        {% if 'current_user' in session%}
+        <form action="" method="POST">
+            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
+            <div class="form-group">
+                <div class="media-body">
+                <div class="form-group basic-textarea rounded-corners">
+                  <textarea class="form-control z-depth-1" id="review-text" name="review-text" rows="3" placeholder="Write your Review..."></textarea>
+                </div>
+            </div>
+            <div><strong>Rating: </strong><input id="rating" name="rating" value="4" type="number" class="rating ml-2 mr-4" min=1 max=5 step=1 data-size="lg">
+                <button type="submit" class="btn btn-outline-info">Submit</button></div>
+            </div>
+
+        </form>
+        {% endif %}
+    </div>
+</div>
+
+{% endblock %}

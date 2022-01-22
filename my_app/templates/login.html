@@ -1,0 +1,47 @@
+{% extends "layout.html" %}
+{% block body %}
+<div class="content-section">
+    <form action="" method="POST">
+        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
+        <Fieldset class="form-group">
+            <legend class="border-bottom mb-4">Sign In</legend>
+            <div class="form-group">
+                <label for="email" class="form-control form-control-lg light">Email address</label>
+                {% if messages['email'] %}
+                    <input type="email" class="form-control form-control-lg is-invalid" id="email" name="email" placeholder="Email">     
+                    <div class="invalid-feedback">
+                            <span> {{ messages['email'] }} </span>
+                    </div>
+                {% else %}
+                    <input type="email" class="form-control form-control-lg" id="email"  name="email" placeholder="Email">     
+                {% endif %}
+            </div>
+            <div class="form-group">
+                <label for="password" class="form-control form-control-lg light">Password</label>
+                {% if messages['password'] %}
+                    <input type="password" class="form-control form-control-lg is-invalid" id="password" name="password" placeholder="Password">     
+                    <div class="invalid-feedback">
+                            <span> {{ messages['password'] }} </span>
+                    </div>
+                {% else %}
+                    <input type="password" class="form-control form-control-lg" id="password" name="password" placeholder="Password">     
+                {% endif %}
+            </div>
+            <div class="form-group form-check text-muted">
+                <input type="checkbox" class="form-check-input" id="rememberme" name="rememberme">
+                <label class="form-check-label" for="rememberme">Remember me</label>
+                <a href="{{ url_for ('forgot_password') }}">Forgot Password?</a>
+            </div>
+        </Fieldset>
+        <div class="form-group">
+            <button type="submit" class="btn btn-outline-info">Submit</button>
+        </div>
+      </form>
+
+</div>
+<div class="form-group border-top pt-3">
+    <small class="text-muted">
+        New User? <a class="small-print" href="{{ url_for('register') }}">Sign Up</a>
+    </small>
+</div>
+{% endblock body %}

@@ -1,0 +1,43 @@
+{% extends "layout.html" %}
+
+{% block body %}
+    <h1>Search for books</h1>
+
+    <legend class="border-bottom mb-4">Search by title, isbn or author</legend>
+    
+    <!-- Search form -->
+    <form action="" method="POST" >
+         <!-- CSRF token - Secret key -->
+         <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
+          <div class="form-group">
+            <div class="input-group md-form form-sm form-1 pl-0">
+                <div class="form-inline pl-2 ">
+                    <select class="custom-select" id="select" name="select" aria-label="Example select with button addon">
+                    <option selected value="title">Title</option>
+                    <option value="isbn">ISBN</option>
+                    <option value="author">Author</option>
+                  </select></div>
+               
+               <div class="input-group-prepend">
+                     <input class="form-control-lg my-0 ml-4 py-1" type="text" id="search-text" name="search-text" placeholder="Search" aria-label="Search">
+                     <button class="input-group-text" id="search-btn" name="search-btn" type="submit"><i class="fa fa-search text-search" aria-hidden="true"></i></button> 
+               </div>
+             </div>
+          </div>        
+    </form>
+    <hr>
+    {% if results %}
+    <h2>Search Result (Top 10)</h2>
+
+    {%for result in results%}
+    <article class="media content-section"> 
+        <div class="media-body">
+            <div class="article-metadata">
+            <a class="mr-2" href="{{ url_for('book', book_id=result.id) }}">{{ result.title}} by {{result.author}} </a>(<small class="text-muted">ISBN:{{result.isbn}}, Published in {{ result.year }}</small>)
+            </div>
+        </div>
+        </article>
+    {%endfor%}
+    {% endif %}
+  
+{% endblock body %}

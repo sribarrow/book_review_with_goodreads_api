@@ -1,0 +1,42 @@
+{% extends "layout.html" %}
+{% block body %}  
+    <div class="content-section">
+        <div class="media">
+          <!-- <img class="rounded-circle account-img" src={{ image_file }}> -->
+          <div class="media-body">
+            <h2 class="account-heading">API Usage and Documentation</h2>
+            <strong>Purpose</strong>
+            <p>Using this info, an authorised user can extract book information from the website using ISBN.</p>
+            <strong>USAGE</strong>
+            <p>Login to avail this feature</p>
+            <p>{defaultwebsite}/api/books/{isbn}</p>
+            <strong>FORMAT</strong>
+            <p>JSON</p>
+            <strong>ERROR</strong>
+            <p>{"error": "Invalid ISBN number",
+                "error_code": "422"}</p>
+            <strong>RESULT</strong>
+            <p>{"title": "Pretty Little Liars",
+                "author": "Sara Shepard",
+                "year": "2006",
+                "isbn": "0060887303",
+                "review_count": 0,
+                "average_score": 0}</p>
+                <hr>
+
+              <h2 class="account-heading">Goodreads.com</h2>
+              <strong>Purpose</strong>
+              <p>Gets review info from goodreads.com for a specific isbn.</p>
+              <strong>USAGE</strong>
+              <p>Login to avail this feature</p>
+              <p>{defaultwebsite}/goodreads/get/{isbn}</p>
+              <strong>FORMAT</strong>
+              <p>JSON</p>
+              <strong>ERROR</strong>
+              <p>{"error": "Invalid ISBN number",
+                  "error_code": "422"}</p>
+              <strong>RESULT</strong>
+            </div>
+        </div>
+    </div>
+{% endblock body %}

@@ -2,3 +2,10 @@ Flask
 Flask-Session
 psycopg2-binary
 SQLAlchemy
+gunicorn
+flask_sqlalchemy
+flask-bcrypt
+flask_wtf
+flask-mail
+pyjwt
+requests

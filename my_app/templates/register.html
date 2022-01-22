@@ -1,0 +1,69 @@
+{% extends "layout.html" %}
+{% block body %}
+<div class="content-section">
+    <form action="" method="POST">
+        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
+        <Fieldset class="form-group">
+            <legend class="border-bottom mb-4">Sign Up</legend>
+            <div class="form-group">
+                <label for="username" class="form-control form-control-lg light">Username</label>
+                {% if messages['username'] %} 
+                    <input type="username" class="form-control form-control-lg is-invalid" id="username" name="username" placeholder="Username" value="{{username}}">  
+                    <small class="form-text text-muted">Alphanumeric Only, 4-20 characters</small>
+                    <div class="invalid-feedback">
+                            <span> {{ messages['username'] }} </span>
+                    </div> 
+                {% else %}
+                    <input type="username" class="form-control form-control-lg" id="username" name="username" placeholder="Username" value="{{username}}">  
+                    <small class="form-text text-muted">Alphanumeric Only, 4-20 characters</small>
+                {% endif %}
+            </div>
+            <div class="form-group">
+                <label for="email" class="form-control form-control-lg light">Email</label>
+                {% if messages['email'] %}   
+                    <input type="text" class="form-control form-control-lg is-invalid" id="email" name="email" placeholder="Email" value="{{email}}">  
+                    <small class="form-text text-muted">Example somename@domain.com</small>
+                    <div class="invalid-feedback">
+                            <span> {{ messages['email'] }} </span>
+                    </div> 
+                {% else %}
+                <input type="text" class="form-control form-control-lg" id="email" name="email" placeholder="Email" value="{{email}}">  
+                <small class="form-text text-muted">Example: somename@domain.com</small>
+                {% endif %}
+            </div>
+            <div class="form-group">
+                <label for="password" class="form-control form-control-lg light">Password</label>
+                {% if messages['password'] %}
+                    <input type="password" class="form-control form-control-lg is-invalid" id="password" name="password" placeholder="Password">   
+                    <small class="form-text text-muted">Should be 8 characters, must have 1 Capital,  1 digit, 1 special character</small>  
+                    <div class="invalid-feedback">
+                            <span> {{ messages['password'] }} </span>
+                    </div>
+                {% else %}
+                    <input type="password" class="form-control form-control-lg" id="password" name="password"  placeholder="Password">   
+                    <small class="form-text text-muted">Should be 8 characters, must have 1 Capital,  1 digit, 1 special character</small>   
+                {% endif %}
+            </div>
+            <div class="form-group">
+                <label for="confirmpassword" class="form-control form-control-lg light">Confirm Password</label>
+                {% if messages['confirmpassword'] %}
+                    <input type="password" class="form-control form-control-lg is-invalid" id="confirmpassword" name="confirmpassword" placeholder="Confirm Password">     
+                    <div class="invalid-feedback">
+                            <span> {{ messages['confirmpassword'] }} </span>
+                    </div>
+                {% else %}
+                    <input type="password" class="form-control form-control-lg" id="confirmpassword"  name="confirmpassword"  placeholder="Confirm Password">     
+                {% endif %}
+            </div>
+        </Fieldset>
+        <div class="form-group">
+            <button type="submit" class="btn btn-outline-info">Submit</button>
+        </div>
+      </form>
+</div>
+<div class="form-group border-top pt-3">
+    <small class="text-muted">
+        Existing User? <a class="small-print" href="{{ url_for('login') }}">Sign In</a>
+    </small>
+</div>
+{% endblock body %}

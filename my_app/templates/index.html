@@ -1,0 +1,17 @@
+{% extends "layout.html" %}
+{% block body %}
+    
+    <h1>Latest Book Reviews</h1>
+    {% if 'current_user' in session %}
+      {%for book in books%}
+      <article class="media content-section">
+          <div class="media-body">
+            <h2><a class="article-title" href="{{ url_for('book', book_id=book.id) }}">{{ book.title }}</a></h2>
+            <p class="article-content">By {{ book.author }}</p>
+            <span class="text-muted ml-2"> Average Rating: {{book.rating}} </span><span class="text-muted ml-2"> Total Reviews: {{book.reviews}} </span>
+          </div>
+        </article>
+      {%endfor%}
+        
+    {% endif %}
+{% endblock body %}

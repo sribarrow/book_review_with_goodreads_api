@@ -77,7 +77,6 @@ def account():
     #image_file=url_for('static',filename='profile_pic/' + current_user.image_file)
     return render_template('account.html', title="User Account", form=form)
 
-
     @app.route("/reset", methods=['GET','POST'])
 def reset():
     if current_user.is_authenticated:
