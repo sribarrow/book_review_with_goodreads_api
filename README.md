@@ -1,6 +1,6 @@
 # Project 1
 
-CS50 - Web Programming with Python and JavaScript
+CS50 - Web Programming with Python & Flask
 
 Database in Heroku
 models.py - contains db object definitions
